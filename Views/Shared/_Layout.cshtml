@@ -36,9 +36,19 @@
     </div>
 
     <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2022 - WypozyczalniaFilmow - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
+        <nav>
+            <ul>
+                <li>
+                    <a href="@Url.Action("StronyStatyczne","Home", new {nazwa = "Onas"})">O nas</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("StronyStatyczne","Home", new {nazwa = "Info"})">Info</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("StronyStatyczne","Home", new {nazwa = "Kontakt"})">Kontakt</a>
+                </li>
+            </ul>
+        </nav>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

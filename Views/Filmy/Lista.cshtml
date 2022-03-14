@@ -1,0 +1,23 @@
+﻿@model IEnumerable<WypozyczalniaFilmow.Models.Film>
+
+<table>
+    <thead>
+        <tr>
+            <th>Tytuł</th>
+            <th>Reżyser</th>
+            <th>Data dodania</th>
+            <th>Cena</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var film in Model)
+            {
+        <tr>
+            <td>@film.Tytul</td>
+            <td>@film.Rezyser</td>
+            <td>@film.DataDodania.ToString()</td>
+            <td>@film.Cena</td>
+        </tr>
+            }
+    </tbody>
+</table>

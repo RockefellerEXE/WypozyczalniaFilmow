@@ -1,5 +1,47 @@
-﻿@model IEnumerable<WypozyczalniaFilmow.Models.Film>
+﻿@model FilmyKategorii
 
+
+
+
+<head>
+    <link href="~/css/site.css" rel="stylesheet" />
+</head>
+<h3>TOP 3 NAJNOWSZE FILMY</h3>
+<table>
+    <tr>
+        @foreach (var film in Model.FilmyNajnowsze)
+        {
+            <td>
+                <h5>
+                    @film.Tytul
+                    <p>
+                        @film.Opis
+                        <br />Czas trwania: @film.DlugoscFilmu
+                    </p>
+                </h5>
+            </td>
+
+        }
+    </tr>
+</table>
+<h3>TOP 3 NAJDŁUŻSZE FILMY</h3>
+<table>
+    <tr>
+        @foreach (var film in Model.FilmyNajdluzsze)
+        {
+            <td>
+                <h5>
+                    @film.Tytul
+                    <p>
+                        @film.Opis
+                        <br />Czas trwania: @film.DlugoscFilmu
+                    </p>
+                </h5>
+            </td>
+
+        }
+    </tr>
+</table>
 <table>
     <thead>
         <tr>
@@ -7,17 +49,20 @@
             <th>Reżyser</th>
             <th>Data dodania</th>
             <th>Cena</th>
+            <th>Długość filmu</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var film in Model)
-            {
-        <tr>
-            <td>@film.Tytul</td>
-            <td>@film.Rezyser</td>
-            <td>@film.DataDodania.ToString()</td>
-            <td>@film.Cena</td>
-        </tr>
-            }
+        @foreach (var film in Model.FilmyKategoria)
+        {
+            <tr>
+                <td>@film.Tytul</td>
+                <td>@film.Rezyser</td>
+                <td>@film.DataDodania.ToString()</td>
+                <td>@film.Cena zł</td>
+                <td>@film.DlugoscFilmu min.</td>
+                <td><a href="@Url.Action("Szczegoly","Filmy",new {idFilmu = film.Id })">&#128269;</a></td>
+            </tr>
+        }
     </tbody>
 </table>

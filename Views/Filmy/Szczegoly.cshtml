@@ -1,0 +1,21 @@
+﻿@model Film
+    <link href="~/css/site.css" rel="stylesheet" />
+
+
+
+<table>
+    <tr>
+        <td>
+            @Model.Tytul
+        </td>
+        <td>
+            <ul>
+                <li>Tytuł: @Model.Rezyser</li>
+                <li>Opis filmu: @Model.Opis</li>
+                <li>Cena: @Model.Cena zł</li>
+                <li>Długość filmu: @Model.DlugoscFilmu min.</li>
+                
+            </ul>
+        </td>
+    </tr>
+</table>

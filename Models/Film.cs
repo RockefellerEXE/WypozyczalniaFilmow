@@ -19,6 +19,7 @@ namespace WypozyczalniaFilmow.Models
         public DateTime DataDodania { get; set; }
         public int KategoriaId { get; set; }
         public Kategoria Kategoria { get; set; }
+        public int DlugoscFilmu { get; set; }
 
     }
 }

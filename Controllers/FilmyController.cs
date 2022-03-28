@@ -38,5 +38,28 @@ namespace WypozyczalniaFilmow.Controllers
             var film = db.Filmy.Find(idFilmu);
             return View(film);
         }
+        public IActionResult Wszystkie()
+        {
+            var filmy = db.Filmy.ToList();
+            return View(filmy);
+        }
+
+
+
+
+        [HttpGet]
+        public ActionResult DodajFilm()
+        {
+            DodawanieViewModel dodaj = new DodawanieViewModel();
+            var kategora = db.Kategorie.ToList();
+            dodaj.Kategorie = kategora;
+            return View(dodaj);
+        }
+
+        public ActionResult DodajFilm(DodawanieViewModel obj)
+        {
+
+            return RedirectToAction("DodajFilm");
+        }
     }
 }

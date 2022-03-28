@@ -16,6 +16,7 @@ namespace WypozyczalniaFilmow.Models
         [StringLength(1000)]
         public string Opis { get; set; }
         public decimal Cena { get; set; }
+        public string Plakat { get; set; }
         public DateTime DataDodania { get; set; }
         public int KategoriaId { get; set; }
         public Kategoria Kategoria { get; set; }

@@ -1,0 +1,19 @@
+﻿@model IEnumerable<WypozyczalniaFilmow.Models.Film>
+@{
+    Layout = "_Layout";
+}
+
+<head>
+    <link href="~/css/site.css" rel="stylesheet" />
+</head>
+
+<div class="lista-wszystkie">
+    <ul>
+        @foreach(var film in Model)
+            {
+                <li>
+                    <a href="@Url.Action("Szczegoly","Filmy", new { idFilmu= film.Id})" ><img src="~/plakaty/@film.Plakat" /></a>
+                </li>
+            }
+    </ul>
+</div>

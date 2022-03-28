@@ -1,8 +1,11 @@
 ﻿@model IEnumerable<WypozyczalniaFilmow.Models.Kategoria>
 
+
+
 <nav>
     @foreach(var kategoria in Model)
             {
                 <a href="@Url.Action("Lista","Filmy", new { nazwakategorii = kategoria.Nazwa })" >@kategoria.Nazwa</a>
             }
+    <a href="@Url.Action("Wszystkie","Filmy")">Wszystkie</a>
 </nav>

@@ -12,7 +12,7 @@
         @foreach(var film in Model)
             {
                 <li>
-                    <a href="@Url.Action("Szczegoly","Filmy", new { idFilmu= film.Id})" ><img src="~/plakaty/@film.Plakat" /></a>
+                    <a href="@Url.Action("Szczegoly","Filmy", new { idFilmu= film.Id})" ><img height="500dp" src="~/plakaty/@film.Plakat" /></a>
                 </li>
             }
     </ul>

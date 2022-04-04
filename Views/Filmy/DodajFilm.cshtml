@@ -4,22 +4,37 @@
 }
 <link href="~/css/site.css" rel="stylesheet" />
 
-@using (Html.BeginForm("DodajFilm", "Filmy",FormMethod.Post))
+@using (Html.BeginForm("DodajFilm", "Filmy", FormMethod.Post, new { enctype="multipart/form-data"}))
 {
 <table>
     <tr>
         <td>Reżyser</td>
         <td>
-            @Html.TextBoxFor(f => f.Film.Rezyser)
+            @Html.TextBoxFor(f => f.Film.Rezyser, new { @requiered =true})
         </td>
     </tr>
     <tr>
         <td>Tytuł</td>
         <td>
-            @Html.TextBoxFor(f => f.Film.Tytul)
+            @Html.TextBoxFor(f => f.Film.Tytul, new { @requiered = true })
         </td>
     </tr>
-    
+    <tr>
+        @foreach (var kategoria in Model.Kategorie)
+        {
+                    <td>@kategoria.Nazwa</td>
+                    <td>@Html.RadioButtonFor(f => f.Film.KategoriaId, kategoria.Id)</td>
+        }
+    </tr>
+    <tr>
+        <td>
+            @Html.LabelFor(f=>f.Plakat, "Dodaj Plakat")
+        </td>
+        <td>
+            @Html.TextBoxFor(f=>f.Plakat, new {@type="file"})
+        </td>
+    </tr>
 
 </table>
+<button type="submit">Dodaj</button>
 }

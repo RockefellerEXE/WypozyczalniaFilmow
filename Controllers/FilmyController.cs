@@ -42,6 +42,24 @@ namespace WypozyczalniaFilmow.Controllers
             var film = db.Filmy.Find(idFilmu);
             return View(film);
         }
+
+        [HttpPost]
+        public IActionResult Szukaj(string tekst)
+        {
+            var filmy = from f in db.Filmy select f;
+            if(!String.IsNullOrEmpty(tekst))
+            {
+                filmy = filmy.Where(f => f.Tytul.Contains(tekst));
+                filmy.ToList();
+
+                return View(filmy);
+            }
+            else
+            {
+                return RedirectToAction("Wszystkie");
+            }
+        }
+        
         public IActionResult Wszystkie()
         {
             var filmy = db.Filmy.ToList();
@@ -74,6 +92,28 @@ namespace WypozyczalniaFilmow.Controllers
             db.Filmy.Add(obj.Film);
             db.SaveChanges();
             return RedirectToAction("DodajFilm");
+        }
+        [HttpGet]
+        public ActionResult EdytujFilm(int id)
+        {
+            var film = db.Filmy.Where(f => f.Id == id).FirstOrDefault();
+            return View(film);
+        }
+        [HttpPost]
+        public ActionResult EdytujFilm(Film obj)
+        {
+            var film = db.Filmy.Where(f => f.Id == obj.Id).FirstOrDefault();
+            
+            film.Tytul=obj.Tytul;
+            film.Rezyser=obj.Rezyser;
+            film.Cena=obj.Cena;
+            film.DlugoscFilmu= obj.DlugoscFilmu;
+            film.Opis = obj.Opis;
+            film.DataDodania =  DateTime.Now;
+
+            db.Entry(film).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Szczegoly", new { idFilmu = film.Id });
         }
     }
 }

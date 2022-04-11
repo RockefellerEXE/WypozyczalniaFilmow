@@ -1,0 +1,20 @@
+﻿@model IEnumerable<WypozyczalniaFilmow.Models.Film>
+
+<table>
+    <thead>
+        <tr>
+            <th>Tytuł</th>
+            <th>Reżyser</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var film in Model)
+        {
+        <tr>
+            <td>@film.Tytul</td>
+            <td>@film.Rezyser</td>
+            <td><a href="@Url.Action("Szczegoly","Filmy",new {idFilmu=film.Id })">&#128269;</a></td>
+        </tr>
+        }
+    </tbody>
+</table>

@@ -20,23 +20,22 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <nav>
-            <ul>
-                <li>
+    <footer class="border-top footer ">
+            <ul class="nav">
+                <li class="nav-link">
                     <a href="@Url.Action("StronyStatyczne","Home", new {nazwa = "Onas"})">O nas</a>
                 </li>
-                <li>
+                <li class="nav-link">
                     <a href="@Url.Action("StronyStatyczne","Home", new {nazwa = "Info"})">Info</a>
                 </li>
-                <li>
+                <li class="nav-link">
                     <a href="@Url.Action("StronyStatyczne","Home", new {nazwa = "Kontakt"})">Kontakt</a>
                 </li>
-                <li>
+                <li class="nav-link">
                     <a href="@Url.Action("DodajFilm","Filmy")">Dodaj film</a>
                 </li>
             </ul>
-        </nav>
+        
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

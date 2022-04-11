@@ -2,7 +2,7 @@
     <link href="~/css/site.css" rel="stylesheet" />
 
 
-
+<button onclick="window.location.href = '@Url.Action("EdytujFilm","Filmy",new {id= Model.Id})'">Edytuj</button>
 <table>
     <tr>
         <td>
@@ -10,12 +10,14 @@
         </td>
         <td>
             <ul>
-                <li>Tytuł: @Model.Rezyser</li>
+                <li>Reżyser: @Model.Rezyser</li>
                 <li>Opis filmu: @Model.Opis</li>
                 <li>Cena: @Model.Cena zł</li>
                 <li>Długość filmu: @Model.DlugoscFilmu min.</li>
-                <li><img height="500dp" src="~/plakaty/@Model.Plakat"/></li>
-                
+                <li>Data Dodania: @Model.DataDodania</li>
+                <li><img height="500dp" src="~/plakaty/@Model.Plakat" /></li>
+
+
             </ul>
         </td>
     </tr>

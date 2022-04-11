@@ -1,0 +1,21 @@
+﻿@model WypozyczalniaFilmow.Models.Film
+@using (Html.BeginForm()) {
+<table>
+    <tr>
+        <td>
+            @Html.TextBoxFor(f => f.Tytul)
+        </td>
+        <td>
+            <ul>
+                <li>@Html.TextBoxFor(f => f.Rezyser)</li>
+                <li>@Html.TextBoxFor(f => f.Opis)</li>
+                <li>@Html.TextBoxFor(f => f.Cena)</li>
+                <li>@Html.TextBoxFor(f => f.DlugoscFilmu)</li>
+                <li><img height="500dp" src="~/plakaty/@Model.Plakat" /></li>
+
+            </ul>
+        </td>
+    </tr>
+</table>
+<button type="submit">Zapisz</button>
+}

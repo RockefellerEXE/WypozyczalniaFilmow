@@ -62,6 +62,7 @@
                 <td>@film.Cena zł</td>
                 <td>@film.DlugoscFilmu min.</td>
                 <td><a href="@Url.Action("Szczegoly","Filmy",new {idFilmu = film.Id })">&#128269;</a></td>
+                <td><a href="@Url.Action("Kup","Koszyk", new { id = film.Id })">🛒</a></td>
             </tr>
         }
     </tbody>

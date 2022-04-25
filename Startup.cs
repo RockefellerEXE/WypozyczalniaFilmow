@@ -28,6 +28,7 @@ namespace WypozyczalniaFilmow
             services.AddControllersWithViews();
 
             services.AddDbContext<FilmyContext>(options => options.UseSqlServer(Configuration.GetConnectionString("filmyCS")));
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,6 +46,7 @@ namespace WypozyczalniaFilmow
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseSession();
 
             app.UseRouting();
 

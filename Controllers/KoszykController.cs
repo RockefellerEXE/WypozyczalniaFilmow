@@ -20,39 +20,41 @@ namespace WypozyczalniaFilmow.Controllers
         [Route("Cart")]
         public IActionResult Index()
         {
-            var cart = SessionHelper.GetObjectFromJson<List<CartItem>>(HttpContext.Session, Consts.CartSessionKey);
+            var cart = CartMenager.GetItems(HttpContext.Session);
             ViewBag.cart = cart;
             ViewBag.total = cart.Sum(item => item.Film.Cena * item.Ilosc);
             return View();
         }
         public IActionResult Kup(int id)
         {
-            var film = db.Filmy.Find(id);
-            if (SessionHelper.GetObjectFromJson<List<CartItem>>(HttpContext.Session, Consts.CartSessionKey) == null)
-            {
-                List<CartItem> cart = new List<CartItem>();
-                cart.Add(new CartItem { Film = film, Ilosc = 1, Wartosc = film.Cena });
-                SessionHelper.SetObjectAsJson(HttpContext.Session, Consts.CartSessionKey, cart);
 
-            }
-            else
-            {
-                List<CartItem> cart = SessionHelper.GetObjectFromJson<List<CartItem>>(HttpContext.Session, Consts.CartSessionKey);
-                int index = InCart(id);
-                if (index != -1)
-                {
-                    cart[index].Ilosc++;
-                }
-                else
-                {
-                    cart.Add(new CartItem { Film = film, Ilosc = 1, Wartosc = film.Cena });
+            CartMenager.AddToCart(HttpContext.Session, db, id);
+            //var film = db.Filmy.Find(id);
+            //if (SessionHelper.GetObjectFromJson<List<CartItem>>(HttpContext.Session, Consts.CartSessionKey) == null)
+            //{
+            //    List<CartItem> cart = new List<CartItem>();
+            //    cart.Add(new CartItem { Film = film, Ilosc = 1, Wartosc = film.Cena });
+            //    SessionHelper.SetObjectAsJson(HttpContext.Session, Consts.CartSessionKey, cart);
 
-                }
-                SessionHelper.SetObjectAsJson(HttpContext.Session, Consts.CartSessionKey, cart);
-            }
+            //}
+            //else
+            //{
+            //    List<CartItem> cart = SessionHelper.GetObjectFromJson<List<CartItem>>(HttpContext.Session, Consts.CartSessionKey);
+            //    int index = InCart(id);
+            //    if (index != -1)
+            //    {
+            //        cart[index].Ilosc++;
+            //    }
+            //    else
+            //    {
+            //        cart.Add(new CartItem { Film = film, Ilosc = 1, Wartosc = film.Cena });
+
+            //    }
+            //    SessionHelper.SetObjectAsJson(HttpContext.Session, Consts.CartSessionKey, cart);
+            //}
             return RedirectToAction("Index");
         }
-        public IActionResult usun(int id)
+        public IActionResult Usun(int id)
         {
             //List<CartItem> cart = SessionHelper.GetObjectFromJson<List<CartItem>>(HttpContext.Session, Consts.CartSessionKey);
             //int index = InCart(id);

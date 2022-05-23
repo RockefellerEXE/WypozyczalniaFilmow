@@ -1,17 +1,33 @@
 ﻿@model IEnumerable<WypozyczalniaFilmow.Models.Kategoria>
 
+<header>
+    <nav>
 
-<header class=" menu-bar">
-    <nav class="menu">
-        @foreach(var kategoria in Model)
+        <ul class="nav justify-content-center">
+            @foreach (var kategoria in Model)
+            {
+                <li class="nav-item"><a href="@Url.Action("Lista", "Filmy" , new { nazwaKategorii=kategoria.Nazwa})"> @kategoria.Nazwa </a></li>
+            }
+            <li class="nav-link"><a href="@Url.Action("Wszystkie", "Filmy")"> Wszystkie </a></li>
+
+            <li>
+                @using (Html.BeginForm("Szukaj", "Filmy"))
                 {
-                    <a href="@Url.Action("Lista","Filmy", new { nazwakategorii = kategoria.Nazwa })" >@kategoria.Nazwa</a>
+                    @Html.TextBox("tekst")
+                    <button type="submit">Szukaj</button>
+
                 }
-        <a href="@Url.Action("Wszystkie","Filmy")">Wszystkie</a>
-        @using (@Html.BeginForm("Szukaj", "Filmy")) {
-            @Html.TextBox("tekst")
-            <button typ="submit">Szukaj</button>
-        
+            </li>
+        </ul>
+
+        @if (User.Identity.IsAuthenticated)
+        {
+            <a href="@Url.Action("Logout","Account")"> @User.Identity.Name</a>
+        }
+        else
+        {
+            <a href="@Url.Action("Login","Account")">Login</a>
         }
     </nav>
 </header>
+
